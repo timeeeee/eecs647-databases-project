@@ -22,12 +22,12 @@ On all pages, at the top of the page add the line::
 
     <?php session_start(); ?>
 
-to get the users current session, if they have one. Now you can use ::
+to get the users current session, if they have one. Now you can use::
 
     isset($_SESSION['user'])
 
-to see if a user is logged in, and ::
+to see if a user is logged in, and::
 
-   <?php $_SESSION['user']; ?>
+    <?php $_SESSION['user']; ?>
 
 to insert their username into the page.
