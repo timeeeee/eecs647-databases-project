@@ -1,0 +1,46 @@
+#banner {
+	background-image: url('images/cycling.jpg');
+    background-position: top;
+    background-attachment: fixed;
+	width: 100%;
+	margin: 0px;
+	height: 500px;
+}
+
+h1#home {
+	font-size: 150px;
+	text-align: center;
+}
+
+#welcome {
+	padding: 20px;
+	color: #666;
+	display: block;
+	float: right;
+}
+
+#content {
+	height: 1000px;
+	background-color: #444;
+}
+
+#content #blog {
+	display: block;
+	background-color: #AAA;
+	margin-top: 20px;
+	margin-left: 20px;
+	height: 95%;
+	width: 60%;
+	float: left;
+}
+
+#content #sponsors {
+	display: block;
+	background-color: #AAA;
+	margin-top: 20px;
+	margin-right: 20px;
+	width: 30%;
+	height: 95%;
+	float: right;
+}
+	
