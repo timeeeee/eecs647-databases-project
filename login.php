@@ -1,11 +1,12 @@
 <?php
+  session_start();
+
   // database variables
   $hostname = "mysql.eecs.ku.edu";
   $sqluser = "jamiller";
-  $sqlpass = "xxxxxxxx";
+  $sqlpass = "Zv35vr6C";
   $dbname = "jamiller";
 
-  session_start();
   $error = '';
 
   if (isset($_SESSION['user'])) {
@@ -17,8 +18,8 @@
       $error = "Invalid username or password.";
     } else {
       // Connect to database
-      $conn = mysql_connect($hostname, $sqluser, $sqlpass) or die(mysql_error());
-      mysql_select_db($dbname) or die("Could not select database.");
+      $conn = mysql_connect($hostname, $sqluser, $sqlpass);
+      Mysql_select_db($dbname);
 
       // Check for username/password pair
       $username = mysql_real_escape_string($_POST['username']);
@@ -32,6 +33,7 @@
       $num_results = mysql_num_rows($query_result);
       if ($num_results == 1) { // successful login
         $_SESSION['user'] = $username;
+		session_write_close();
         header("location: home.php");
       } else {
       $error = "Invalid username or password.";
@@ -44,9 +46,8 @@
       // Check if this username is already used!
 
       // Connect to database
-      $conn = mysql_connect($hostname, $sqluser, $sqlpass)
-	    or die("could not connect: " . mysql_error());
-      mysql_select_db($dbname) or die("could not select database");
+      $conn = mysql_connect($hostname, $sqluser, $sqlpass);
+      Mysql_select_db($dbname);
 
       $username = mysql_real_escape_string($_POST['username']);
       $password = mysql_real_escape_string($_POST['password']);
@@ -68,6 +69,7 @@
 
         // Log user in
         $_SESSION['user'] = $username;
+        session_write_close();
         header("location: home.php");
       }
     }
@@ -81,7 +83,7 @@
   <h1>Login</h1>
   <form action="" method="post">
 	<label>Username:</label>
-	<input id="username" name="username" type="text" />
+	<input id="username" name="username" type="text" autofocus/>
 	<br/>
 	<label>Password:</label>
 	<input id="password" name="password" type="password" />
