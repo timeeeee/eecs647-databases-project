@@ -1,6 +1,9 @@
-<?php session_start(); ?>
+<?php
+  session_start();
+  ?>
 <html>
   <?php include("menu.php"); ?>
+  <link rel="stylesheet" type="text/css" href="sponsors.css">
   <div>
 	<h1>Sponsors</h1>
 	<?php
@@ -16,6 +19,7 @@
       $query = "SELECT NAME, IMAGEPATH FROM SPONSORS";
       $query_result = mysql_query($query, $conn);
        while ($row = mysql_fetch_row($query_result)) {
+	    echo("<div class='sponsor'>");
         echo("<img src='images/" . $row[1] . "'/>");
         echo("<p>" . $row[0] . "</p>");
 
@@ -25,6 +29,9 @@
 		  echo("<p><a href='" . $edit_url . "'>Edit</a></p>");
 		  echo("<p><a href='" . $delete_url . "'>Delete</a></p>");
 		}
+
+   		echo("</div>");
+
 	   }
 
       if (isset($_SESSION['user']))
