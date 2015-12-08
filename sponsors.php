@@ -18,7 +18,17 @@
        while ($row = mysql_fetch_row($query_result)) {
         echo("<img src='images/" . $row[1] . "'/>");
         echo("<p>" . $row[0] . "</p>");
-      }
+
+		if (isset($_SESSION['user'])) {
+		  $edit_url = "edit_sponsor.php?name=" . $row[0];
+		  $delete_url = "delete_sponsor.php?name=" . $row[0];
+		  echo("<p><a href='" . $edit_url . "'>Edit</a></p>");
+		  echo("<p><a href='" . $delete_url . "'>Delete</a></p>");
+		}
+	   }
+
+      if (isset($_SESSION['user']))
+        echo("<p><a href='edit_sponsor.php'>Add new</a></p>");
     ?>
   </div>
 </html>
