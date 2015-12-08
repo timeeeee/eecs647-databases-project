@@ -7,7 +7,7 @@
 
   session_start();
   $error = '';
-
+ 
   // Connect to database
   $conn = mysql_connect($hostname, $sqluser, $sqlpass);
   Mysql_select_db($dbname);
@@ -27,10 +27,18 @@
   <li>
   <?php $article_link="article.php?article_id=".$article['ARTICLE_ID']; ?>
   <a href=<?=$article_link?> id="link">
-  <h1 id="title"><?php echo($article['TITLE']) ?></h1>
-  <h3 id="author">by <?php echo($article['USERNAME']) ?></h3>
-  </br>
-  <p id="snippet"><?php echo($article['TEXT']) ?></p>
+    <h1 id="title"><?php echo($article['TITLE']) ?></h1>
+    <h3 id="author">by <?php echo($article['USERNAME']) ?></h3>
+    </br>
+    <p id="snippet"><?php echo($article['TEXT']) ?></p>
+ </a>
+ </li>
+<?php }
+if($_SESSION['user']) { ?>
+  <li>
+  <?php $article_link="article.php?new=0"; ?>
+  <a href=<?=$article_link?> id="link">
+    <h1 id="title">+ Add New Article</h1>
   </a>
   </li>
 <?php } ?>

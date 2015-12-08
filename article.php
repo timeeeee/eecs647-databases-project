@@ -14,6 +14,14 @@
 
   $this_id = isset($_GET['article_id']) ? $_GET['article_id'] : '1';
   
+  if(isset($_POST['make_new']))
+  {
+  	 var_dump("Save the post");
+    $query = 'INSERT INTO ARTICLE (USERNAME, TITLE, TEXT)';
+    $query = $query.'VALUES ("'.$_SESSION['user'].'", "'.$_POST["article_title"].'", "'.$_POST["article_body"].'" ) ';
+    mysql_query($query, $conn);
+  }
+  
   if(isset($_POST['article_title']) &&
      isset($_POST['article_body']) &&
      isset($_POST['save']))
@@ -30,6 +38,7 @@
   
   $query = "SELECT TITLE, USERNAME, ARTICLE_ID FROM ARTICLE";
   $panel_articles = mysql_query($query, $conn);
+  $is_new =  ( isset($_GET['new']) && $_GET['new']=='0' );
 ?>
 
 <html>
@@ -54,13 +63,15 @@
   if($_SESSION['user']) { ?>
     <form action="" method="post">
 	 <label>Title:</label>
-    <input id="article_title" name="article_title" type="text" value="<?php echo($article['TITLE']) ?>">
+    <input id="article_title" name="article_title" type="text" value="<?=$is_new ? 'Title Goes Here' : $article['TITLE'] ?>">
+	 <br/><br/>
+	 <label>by <?php echo($article['USERNAME']) ?></label>
 	 <br/><br/>
 	 <label>Article:</label>
 	 <br/>
-	 <textarea rows="20" cols="50" id="article_body" name="article_body" type="text"/><?php echo($article['TEXT']) ?></textarea>
+	 <textarea rows="20" cols="50" id="article_body" name="article_body" type="text"/><?=$is_new ? 'Text goes here.' : $article['TEXT'] ?></textarea>
 	 <br/>
-	 <input name="save" type="submit" value="Save" />
+	 <input name="<?=$is_new ? 'make_new' : 'save' ?>" type="submit" value="Save" />
     </form>
   <?php } else { ?>
 	 <h1><?php echo($article['TITLE']) ?></h1>
