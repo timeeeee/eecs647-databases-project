@@ -1,14 +1,17 @@
 <?php
   // database variables
-  $hostname = "xxxxxxxx";
-  $sqluser = "xxxxxxxx";
-  $sqlpass = "xxxxxxxx";
-  $dbname = "xxxxxxxx";
+  $hostname = "mysql.eecs.ku.edu";
+  $sqluser = "jamiller";
+  $sqlpass = "Zv35vr6C";
+  $dbname = "jamiller";
 
   session_start();
   $error = '';
 
-  if (isset($_POST['login'])) {
+  if (isset($_SESSION['user'])) {
+    // User already logged in.
+    header("location: home.php");
+  } elseif (isset($_POST['login'])) {
     // This form was just submitted. Make sure username and password were provided
     if (empty($_POST['username']) || empty($_POST['password'])) {
       $error = "Invalid username or password.";
@@ -29,7 +32,7 @@
       $num_results = mysql_num_rows($query_result);
       if ($num_results == 1) { // successful login
         $_SESSION['user'] = $username;
-        header("location: home.html");
+        header("location: home.php");
       } else {
       $error = "Invalid username or password.";
       }
@@ -59,12 +62,12 @@
       } else {
         // add user to the database
         $query = "INSERT INTO USERS VALUES ";
-        $query = $query . "('$username', '$password_hash')";
+        $query = $query . "('$username', '$password_hash', 0)";
         mysql_query($query, $conn);
 
         // Log user in
         $_SESSION['user'] = $username;
-        header("location: home.html");
+        header("location: home.php");
       }
     }
   }
