@@ -7,7 +7,7 @@
 }
 
 #sidepanel li {
-  background-color: #ffc266;
+  background-color: #66ccff;
   color: #FFC;
   width: 100%;
   height: 100px;
@@ -19,12 +19,12 @@
 }
 
 #sidepanel li label#title {
- color: #3399ff;
+  color: #000000;
   font-size: 22px;
 }
 
 #sidepanel li label#author {
-  color: #3399ff;
+  color: #000000;
   font-size: 18px;
 }
 
@@ -37,7 +37,7 @@
 }
 
 #sidepanel li:hover {
-  background-color: #0000D0;
+  background-color: #4dc4ff;
 }
 
 /* make whole link area clickable */

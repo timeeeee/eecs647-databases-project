@@ -14,6 +14,15 @@
 
   $this_id = isset($_GET['article_id']) ? $_GET['article_id'] : '1';
   
+  if(isset($_POST['article_title']) &&
+     isset($_POST['article_body']) &&
+     isset($_POST['save']))
+  {
+    $query = 'UPDATE ARTICLE SET TITLE="'.$_POST["article_title"];
+    $query = $query.'", TEXT="'.$_POST["article_body"];
+    $query = $query.'" WHERE ARTICLE_ID='.$this_id;
+    mysql_query($query, $conn);
+  }
   
   $query = "SELECT TITLE, USERNAME, TEXT FROM ARTICLE WHERE ";
   $query = $query . "ARTICLE_ID='$this_id'";
