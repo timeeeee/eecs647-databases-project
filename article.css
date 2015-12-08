@@ -1,0 +1,49 @@
+#sidepanel {
+  background-color: #0000F0;
+  width: 25%;
+  float: left;
+  list-style-type: none;
+  padding: 0px;
+}
+
+#sidepanel li {
+  background-color: #66ccff;
+  color: #FFC;
+  width: 100%;
+  height: 100px;
+  text-align: left;
+  font-size: 20px;
+  float: left;
+  clear: left;
+  margin-right: 4px;
+}
+
+#sidepanel li label#title {
+  color: #000000;
+  font-size: 22px;
+}
+
+#sidepanel li label#author {
+  color: #000000;
+  font-size: 18px;
+}
+
+#featuredarticle {
+  background-color: white;
+  width: 70%;
+  float: left;
+  list-style-type: none;
+  padding: 10px;
+}
+
+#sidepanel li:hover {
+  background-color: #4dc4ff;
+}
+
+/* make whole link area clickable */
+#link {
+  display : block;
+  width:100%;
+  height:100%;
+  text-decoration: none;
+}

@@ -1,0 +1,40 @@
+#pane {
+  background-color: #0000F0;
+  width: 100%;
+  float: bottom;
+  list-style-type: none;
+  padding: 0px;
+}
+
+#panel li {
+  background-color: #66ccff;
+  height: 25%;
+  float: bottom;
+  list-style-type: none;
+  padding: 0px;
+}
+
+#panel li h3#author {
+  color: #000000;
+  font-size: 22px;
+}
+
+#panel li p#snippet {
+  color: #000000;
+  height: 25%;
+  font-size: 18px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+#panel li:hover {
+  background-color: #4dc4ff;
+}
+
+/* make whole link area clickable */
+#link {
+  display : block;
+  width:100%;
+  height:100%;
+  text-decoration: none;
+}
