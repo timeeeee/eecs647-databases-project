@@ -2,7 +2,7 @@
   // database variables
   $hostname = "mysql.eecs.ku.edu";
   $sqluser = "jamiller";
-  $sqlpass = "Zv35vr6C";
+  $sqlpass = "xxxxxxxx";
   $dbname = "jamiller";
 
   session_start();
@@ -17,8 +17,8 @@
       $error = "Invalid username or password.";
     } else {
       // Connect to database
-      $conn = mysql_connect($hostname, $sqluser, $sqlpass);
-      Mysql_select_db($dbname);
+      $conn = mysql_connect($hostname, $sqluser, $sqlpass) or die(mysql_error());
+      mysql_select_db($dbname) or die("Could not select database.");
 
       // Check for username/password pair
       $username = mysql_real_escape_string($_POST['username']);
@@ -44,8 +44,9 @@
       // Check if this username is already used!
 
       // Connect to database
-      $conn = mysql_connect($hostname, $sqluser, $sqlpass);
-      Mysql_select_db($dbname);
+      $conn = mysql_connect($hostname, $sqluser, $sqlpass)
+	    or die("could not connect: " . mysql_error());
+      mysql_select_db($dbname) or die("could not select database");
 
       $username = mysql_real_escape_string($_POST['username']);
       $password = mysql_real_escape_string($_POST['password']);
