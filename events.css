@@ -1,0 +1,59 @@
+#banner {
+	background-image: url('images/cycling.jpg');
+    background-position: top;
+    background-attachment: fixed;
+	width: 100%;
+	margin: 0px;
+	height: 250px;
+}
+
+#sponsorbanner {
+	width: 100%;
+	margin: 0px;
+	height: 150px;
+}
+#sponsorbanner #sponsorlogo {
+    display: block;
+    height: 100%;
+    width: 250px;
+    float: left;
+}
+
+h1#textbanner {
+	font-size: 80px;
+	text-align: center;
+}
+
+#content {
+	height: 1000px;
+	background-color: #444;
+}
+
+#content #col {
+	display: block;
+	background-color: #AAA;
+	margin-top: 20px;
+	margin-left: 20px;
+	width: 30%;
+	height: 95%;
+	float: left;
+}
+
+#content #col #event{
+    display: block;
+	background-color: #ffa64d;
+	margin-top: 15px;
+	margin-left: 15px;
+	width: 90%;
+	height: 20%;
+	float: top;
+}
+
+#logo{
+	width: 100%;
+    height: auto;
+}
+
+#content #col #event:hover {
+  background-color: #ff9933;
+}
