@@ -8,6 +8,7 @@
 }
 
 h1#home {
+    margin: 30px;
 	font-size: 150px;
 	text-align: center;
 }
@@ -32,6 +33,12 @@ h1#home {
 	height: 95%;
 	width: 60%;
 	float: left;
+	text-align: center;
+}
+
+#content #blog a {
+	margin: 20px;
+	display: block;
 }
 
 #content #sponsors {
@@ -42,5 +49,10 @@ h1#home {
 	width: 30%;
 	height: 95%;
 	float: right;
+	text-align: center;
+}
+
+#content #sponsors img {
+	max-width: 100%;
 }
 	
