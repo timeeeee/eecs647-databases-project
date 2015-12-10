@@ -11,8 +11,17 @@
     $conn = mysql_connect($hostname, $sqluser, $sqlpass);
     mysql_select_db($dbname);
 
+	$query = "SELECT NAME_EVENT, TIME, DESCRIPTION FROM EVENT WHERE NAME_EVENT='Race'";
+    $race_result = mysql_query($query, $conn);
+	
+	$query = "SELECT NAME_EVENT, TIME, DESCRIPTION FROM EVENT WHERE NAME_EVENT='Charity'";
+    $charity_result = mysql_query($query, $conn);
+	
+	$query = "SELECT NAME_EVENT, TIME, DESCRIPTION FROM EVENT WHERE NAME_EVENT='Ride'";
+    $ride_result = mysql_query($query, $conn);
+	
     $query = "SELECT NAME, IMAGEPATH FROM SPONSORS";
-    $query_result = mysql_query($query, $conn);
+    $sponsors_result = mysql_query($query, $conn);
     ?>
   <body>
     <?php include("menu.php"); ?>
@@ -21,18 +30,35 @@
       <h1 id="textbanner">Upcoming Events</h1>
 	  <div id="content">
 	    <div id="col">
-	      <div id="event">Here is an event.</div>
-	      <div id="event">Next event in this schedule.</div>
+		  <?php while ($row = mysql_fetch_row($race_result)) {
+            echo("<div id='event'>");
+            echo("<h2>" . $row[0] . "</h2>");
+			echo("<p>" . $row[1] . "</p>");
+            echo("<p>" . $row[2] . "</p>");
+            echo("</div>");
+          } ?>
   	    </div>
 	    <div id="col">
-	      <div id="event">Here is another event.</div>
+	      <?php while ($row = mysql_fetch_row($charity_result)) {
+            echo("<div id='event'>");
+            echo("<h2>" . $row[0] . "</h2>");
+			echo("<p>" . $row[1] . "</p>");
+            echo("<p>" . $row[2] . "</p>");
+            echo("</div>");
+          } ?>
 	    </div>
 	    <div id="col">
-	      <div id="event">Here is yet another event.</div>
+	      <?php while ($row = mysql_fetch_row($ride_result)) {
+            echo("<div id='event'>");
+            echo("<h2>" . $row[0] . "</h2>");
+			echo("<p>" . $row[1] . "</p>");
+            echo("<p>" . $row[2] . "</p>");
+            echo("</div>");
+          } ?>
 	    </div>
       </div>
 	  <div id="sponsorbanner">
-	    <?php while ($row = mysql_fetch_row($query_result)) {
+	    <?php while ($row = mysql_fetch_row($sponsors_result)) {
           echo("<div id='sponsorlogo'>");
           echo("<img id='logo' src='images/" . $row[1] . "'/>");
           echo("</div>");
