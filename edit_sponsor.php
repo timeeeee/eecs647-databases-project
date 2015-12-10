@@ -16,15 +16,16 @@
   if (isset($_POST['save']) || isset($_POST['update'])) {
     $path = $_FILES['image']['name'];
 	$name = $_POST['name'];
+    $url = $_POST['url'];
 
     if (isset($_POST['save'])) {
 	  // Create new
-      $values = "('" . $name . "', '" . $path . "', '" . $user . "')";
+      $values = "('" . $name . "', '" . $path . "', '" . $url . "')";
       $query = "INSERT INTO SPONSORS VALUES " . $values;
 	} else {
 	  // Update existing sponsor
 	  $old_name = $_POST['old_name'];
-	  $query = "UPDATE SPONSORS SET NAME='" . $name . "'";
+	  $query = "UPDATE SPONSORS SET NAME='" . $name . "', LINK='" . $url . "'";
       if ($path) $query = $query . ", IMAGEPATH='" . $path . "'";
 	  $query = $query . " WHERE NAME='" . $old_name . "'";
     }
@@ -49,7 +50,7 @@
 	  or die("Can't connect to database: " . mysql_error());
     mysql_select_db($dbname) or die("can't select database");
   
-    $query = "SELECT NAME, IMAGEPATH FROM SPONSORS ";
+    $query = "SELECT NAME, IMAGEPATH, LINK FROM SPONSORS ";
 	$query = $query . "WHERE NAME='" . $_GET['name'] . "'";
     $query_result = mysql_query($query, $conn);
 	if (mysql_num_rows($query_result) == 0)
@@ -58,12 +59,14 @@
 	$row = mysql_fetch_row($query_result);
     $name = $row[0];
 	$path = $row[1];
+	$url = $row[2];
 
 	$button_label = "update";
   } else {
     // creating a new one- label the button save instead of update
     $button_label = "save";
 	$name = "";
+    $url = "";
   }
   ?>
 
@@ -73,12 +76,22 @@
     <h1>Edit sponsor:</h1>
     <?php if (isset($path)) echo("<img src='images/" . $path . "'/>"); ?>
 	<form action="" method="post" enctype="multipart/form-data">
-	  <label>Name:</label>
-      <input type="text" size="40" name="name" value="<?=$name?>" />
-      <label>Image:</label>
-      <input type="file" accept="image/*" name="image" />
-      <?php if (isset($name)) echo("<input type='hidden' name='old_name' " .
-	                               "value='" . $name . "' />"); ?>
+	  <p>
+        <label>Name:</label>
+        <input type="text" size="40" name="name" value="<?=$name?>" />
+      </p>
+
+	  <p>
+	    <label>Url:</label>
+	    <input type="text" size="100" name="url" value="<?=$url?>" />
+      </p>
+
+	  <p>
+        <label>Image:</label>
+        <input type="file" accept="image/*" name="image" />
+        <?php if (isset($name)) echo("<input type='hidden' name='old_name' " .
+	                                 "value='" . $name . "' />"); ?>
+      </p>
 	  <input type="submit" name="<?=$button_label?>" value="<?=$button_label?>" />
     </form>
   </div>

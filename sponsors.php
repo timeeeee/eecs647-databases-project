@@ -16,11 +16,13 @@
       $conn = mysql_connect($hostname, $sqluser, $sqlpass);
       mysql_select_db($dbname);
 
-      $query = "SELECT NAME, IMAGEPATH FROM SPONSORS";
+      $query = "SELECT NAME, IMAGEPATH, LINK FROM SPONSORS";
       $query_result = mysql_query($query, $conn);
        while ($row = mysql_fetch_row($query_result)) {
 	    echo("<div class='sponsor'>");
+		echo("<a href='" . $row[2] . "'>");
         echo("<img src='images/" . $row[1] . "'/>");
+		echo("</a>");
         echo("<p>" . $row[0] . "</p>");
 
 		if (isset($_SESSION['user'])) {
